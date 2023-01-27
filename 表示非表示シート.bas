@@ -1,5 +1,13 @@
-Sub シート非表示()
+Sub 表示_シート全()
 
+   Dim WS As Worksheet
+    For Each WS In Worksheets
+        WS.Visible = True
+    Next
+    
+End Sub
+
+Sub 非表示_シート()
    Dim WS As Worksheet, flag As Boolean
     For Each WS In Worksheets
         If WS.Name = "" Or _
