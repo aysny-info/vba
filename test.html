@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テーブルセルのフォントサイズ調整</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* テーブル全体のレイアウトを固定 */
+        }
+        th, td {
+            border: 1px solid black;
+            width: 150px; /* 固定幅 */
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td class="adjustable">短いテキスト</td>
+        <td class="adjustable">あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも</td>
+        <td class="adjustable">中くらいのテキスト</td>
+    </tr>
+</table>
+
+<script>
+    document.querySelectorAll('.adjustable').forEach(function(cell) {
+        let fontSize = 20; // 初期フォントサイズ
+        const maxWidth = cell.clientWidth;
+
+        while (cell.scrollWidth > maxWidth && fontSize > 10) {
+            fontSize--;
+            cell.style.fontSize = fontSize + 'px';
+        }
+    });
+</script>
+
+</body>
+</html>

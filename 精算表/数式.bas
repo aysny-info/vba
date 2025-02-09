@@ -1,0 +1,29 @@
+=IF(
+    AND(AL3="○", P3>0),
+    IFERROR(
+        IF(
+            LEN(F3)=4,
+            LOOKUP(10^17, LEFT(Q3, COLUMN($1:$1)) * 1) * P3,
+            (P3 * Q3 + AH3 / M3) /
+                IF(
+                    BC3="野菜",
+                    VLOOKUP(F3, 部品Mcsv!$AM:$BZ, 40, FALSE),
+                    VLOOKUP(F3, 部品Mcsv!$AM:$BH, 22, FALSE)
+                )
+        ),
+        0
+    ),
+    IFERROR(
+        IF(
+            LEN(F3)=4,
+            LOOKUP(10^17, LEFT(Q3, COLUMN($1:$1)) * 1) * P3,
+            P3 * Q3 /
+                IF(
+                    BC3="野菜",
+                    VLOOKUP(F3, 部品Mcsv!$AM:$BZ, 40, FALSE),
+                    VLOOKUP(F3, 部品Mcsv!$AM:$BH, 22, FALSE)
+                )
+        ),
+        0
+    )
+)
